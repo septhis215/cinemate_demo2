@@ -18,6 +18,12 @@
 </head>
 
 <body>
+    <!--
+    <div class="loading-container">
+        <img src="{% static 'img/spining-pug.gif' %}" alt="">
+        <h1><i class="fa-solid fa-spinner"></i></h1>
+    </div>
+    -->
     <div class="navbar">
         <ul>
             <li>
@@ -74,7 +80,7 @@
                 <div class="small-dropdown-content">
                     <a href="/" class="small-home">Home</a>
                     <div class="sub-dropdown">
-                        <h3 href="#">| Movies</h3>
+                        <h3>| Movies</h3>
                         <div class="sub-dropdown-content">
                             <a href="{% url 'recent_movie' %}" action='recent_movie' method="get">Recent Movies</a>
                             <a href="{% url 'top_movie' %}" action='top_movie' method="get">Top Movies By Genre</a>
@@ -84,14 +90,14 @@
                         </div>
                     </div>
                     <div class="sub-dropdown">
-                        <h3 href="#">| More</h3>
+                        <h3>| More</h3>
                         <div class="sub-dropdown-content">
                             <a href="{% url 'memory_game' %}">Movie Flip</a>
                             <a href="{% url 'top_box_office' %}">Top Box Office </a>
                         </div>
                     </div>
                     <div class="sub-dropdown">
-                        <h3 href="#">| Account</h3>
+                        <h3>| Account</h3>
                         <div class="sub-dropdown-content">
                             {% if user.is_authenticated %}
                             <a href="{% url 'profile' %}">Profile</a>

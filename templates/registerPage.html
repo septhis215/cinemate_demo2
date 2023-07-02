@@ -117,7 +117,7 @@
 
             <!-- Register Form-->
             <div class="form register-form">
-                <form onclick="showDemo()" method="post">
+                <form action="{% url 'register' %}" method="post">
                     {% csrf_token %}
                     <h2 id="page-name">Sign Up Now!</h2>
                     <div class="input-box">
@@ -150,21 +150,6 @@
                     </div>
                 </form>
             </div>
-            <script>
-                function showDemo() {
-                    swal({
-                        title: "No Access!",
-                        text: "This website is for demo purposes, functions that requires a database will not available.",
-                        icon: "error",
-                        button: "Okay",
-                        closeOnClickOutside: true,
-                        closeOnEsc: true,
-                        timer: 5000,
-                        animation: "pop"
-                    });
-                }
-                showDemo();
-            </script>
         </div>
     </section>
 

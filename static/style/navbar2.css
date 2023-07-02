@@ -310,7 +310,7 @@ Styling*/
     color: #eee;
 }
 
-.small-dropdown-container {
+.navbar .small-dropdown-container {
     position: absolute;
     top: 15px;
     left: 20px;

@@ -298,6 +298,94 @@ Styling*/
     transition: 0.15s ease;
 }
 
+/* Small Menu */
+
+.small-menu {
+    background-color: transparent;
+    border: none;
+    font-size: 1.8rem;
+    padding-right: 20px;
+}
+
+.small-menu i {
+    color: #eee;
+}
+
+.small-dropdown-content .small-home {
+    font-size: 1.5rem;
+}
+
+.small-dropdown-container {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.small-menu-wrapper {
+    padding-top: 20px;
+}
+
+.small-dropdown-content {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    min-width: 160px;
+    background-color: #333;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 101;
+    border-radius: 5px;
+    right: auto;
+    left: 0;
+}
+
+.small-dropdown-container:hover .small-dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-dropdown {
+    position: relative;
+}
+
+.sub-dropdown h3 {
+    color: #59878B;
+    cursor: default;
+    font-size: 1.5rem;
+    padding: 15px 10px;
+}
+
+.sub-dropdown-content {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    min-width: 200px;
+    background-color: #333;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 101;
+    border-radius: 5px;
+    left: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.small-dropdown-content a {
+    text-decoration: none;
+    color: #eee;
+    font-size: 1.1rem;
+    padding: 15px 15px;
+    transition: 0.15s ease;
+}
+
+.small-dropdown-content a:hover {
+    color:#59878B;
+    transition: 0.15s ease;
+}
+
+.sub-dropdown:hover .sub-dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* scroll bar styling */
 
@@ -481,30 +569,45 @@ Styling*/
 }
 
 @media screen and (min-width: 886px) and (max-width: 1014px) {
+    .small-dropdown-container {
+        display: none;
+    }
     #search-input {
         width: 150px;
     }
 }
 
 @media screen and (min-width: 1014px) and (max-width: 1213px) {
+    .small-dropdown-container {
+        display: none;
+    }
     #search-input {
         width: 250px;
     }
 }
 
 @media screen and (min-width: 1213px) and (max-width: 1408px) {
+    .small-dropdown-container {
+        display: none;
+    }
     #search-input {
         width: 450px;
     }
 }
 
 @media screen and (min-width: 1408px) and (max-width: 1601px) {
+    .small-dropdown-container {
+        display: none;
+    }
     #search-input {
         width: 650px;
     }
 }
 
 @media screen and (min-width: 1601px) {
+    .small-dropdown-container {
+        display: none;
+    }
     #search-input {
         width: 850px;
     }

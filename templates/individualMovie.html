@@ -383,6 +383,17 @@
                             <i class="fa-sharp fa-regular fa-comments"></i>
                         </a>
                         <p class="release-year">{{ movie.release_date }}</p>
+                        <script> 
+                            // movie year elements
+                            const movieYear = document.querySelectorAll(".release-year");
+
+                            // set movie release year 
+                            movieYear.forEach((e) => {
+                                const movieDate = e.textContent;
+                                const year = new Date(movieDate).getFullYear(); // Extract the year from the release date string
+                                e.textContent = year;
+                            });
+                        </script>
                     </div>
                     <h3 class="movie-title">{{ movie.title }}</h3>
                     <div class="btn-container">
@@ -547,16 +558,6 @@
         }
 
         statusColor();
-
-        // movie year elements
-        const movieYear = document.querySelectorAll(".release-year");
-
-        // set movie release year 
-        movieYear.forEach((e) => {
-            const movieDate = e.textContent;
-            const year = new Date(movieDate).getFullYear(); // Extract the year from the release date string
-            e.textContent = year;
-        });
 
         var textarea = document.querySelector('textarea');
 

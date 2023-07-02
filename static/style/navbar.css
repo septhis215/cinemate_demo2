@@ -315,7 +315,7 @@ Styling*/
     font-size: 1.5rem;
 }
 
-.small-dropdown-container {
+.navbar .small-dropdown-container {
     position: absolute;
     top: 10px;
     left: 20px;

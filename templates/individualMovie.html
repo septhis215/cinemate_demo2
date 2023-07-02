@@ -532,6 +532,15 @@
     <script src="{% static 'script/pop_alert.js' %}"></script>
 
     <script>
+        // rating elements
+        const rating = document.querySelectorAll(".movie-rating");
+
+        // set tmdb rating to 1 decimal
+        rating.forEach((e) => {
+            const rate = parseFloat(e.textContent);
+            e.textContent = rate.toFixed(1);
+        });
+        
         // movie year elements
         const movieYear = document.querySelectorAll(".release-year");
 

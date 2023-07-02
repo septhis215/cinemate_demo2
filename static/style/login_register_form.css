@@ -1,0 +1,173 @@
+.form-bg::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('/static/img/movie-bg.jpg');
+    background-size: cover;
+    filter: brightness(0.4) blur(10px);
+}
+
+.form-btn:hover,
+.login-register:hover i {
+    color: #59878B;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+}
+
+.login-register:hover i {
+    animation: bounce 1.3s ease-in-out infinite;
+    transition: 0.25s ease-in-out;
+}
+
+.form-container {
+    position: relative;
+    display: block;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 420px;
+    width: 100%;
+    max-height: 100vh;
+    padding: 30px;
+    border-radius: 15px;
+    background: #fff;
+    overflow-y: auto;
+    animation: popup 0.3s ease forwards;
+}
+
+.form-home {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    z-index: 101;
+}
+
+.form-container h2 {
+    font-size: 25px;
+    color: #122527;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    margin-top: 22px;
+    width: 100%;
+    height: 40px;
+}
+
+.input-box input {
+    height: 100%;
+    width: 100%;
+    font-size: 15px;
+    padding: 0 30px;
+    color: #333;
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid #aaaa;
+}
+
+.input-box input:focus {
+    border-color: #59878B;
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 19px;
+    color: #122527;
+}
+
+.input-box i.user,
+.input-box i.email,
+.input-box i.password {
+    left: 0;
+    color: #707070;
+}
+
+.input-box input:focus~i.user,
+.input-box input:focus~i.email,
+.input-box input:focus~i.password {
+    border-color: #59878B;
+}
+
+.input-box i.pass-hide {
+    cursor: pointer;
+    right: 0;
+    font-size: 18px;
+}
+
+.forget-password {
+    margin-top: 14px;
+}
+
+.form-container a {
+    color: #59878B;
+    font-size: 13px;
+}
+
+.reset-guide {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #333;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+.login-btn,
+.register-btn,
+.reset-password-btn {
+    cursor: pointer;
+    background-color: transparent;
+    width: 100%;
+    padding: 10px 0;
+    color: #122527;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    margin-top: 30px;
+    border-radius: 25px;
+    box-shadow: 0 0 0 2px #122527;
+    transition: all 0.25s ease;
+}
+
+.login-btn:hover,
+.register-btn:hover,
+.reset-password-btn:hover {
+    background-color: #59878B;
+    transition: all 0.25s ease;
+}
+
+.signup-login {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form .error-container {
+    margin-top: 22px;
+    border-radius: 25px;
+}
+
+.success-bg {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+.error-bg {
+    background-color: rgb(231, 171, 171);
+    color: rgb(77, 45, 45);
+}
+
+.form #error-message {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}

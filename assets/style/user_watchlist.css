@@ -1,0 +1,83 @@
+.watchlist-movie-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.watchlist-movies {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.watchlist-movie-box {
+    position: relative;
+    flex: 0 0 200px;
+    margin: 2px 20px 20px 2px;
+    background-color: rgb(0, 0, 0, 0.6);
+    height: auto;
+    width: 340px;
+    border-radius: 10px;
+}
+
+.watchlist-movie-box:hover {
+    box-shadow: 0 0 1px 1px #eee;
+}
+
+.watchlist-poster-container {
+    width: 340px;
+    height: 200px;
+}
+
+.watchlist-movie-box img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.25s ease-in-out;
+}
+
+.watchlist-movie-box img:hover {
+    cursor: pointer;
+    opacity: 60%;
+    transition: 0.2s ease-in-out;
+}
+
+.watchlist-movie-box .watchlist-movie-title {
+    margin: 10px 15px;
+    color: #eee;
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+}
+
+
+/* User signed in*/
+
+.watchlist-btn-wrapper .add-watchlist-btn,
+.watchlist-btn-wrapper .remove-watchlist-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #eee;
+    color: #eee;
+    padding: 10px 0 10px 0;
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    transition: 0.25s ease;
+}
+
+.watchlist-btn-wrapper .add-watchlist-btn:hover,
+.watchlist-btn-wrapper .remove-watchlist-btn:hover {
+    opacity: 70%;
+    transition: 0.25s ease;
+}

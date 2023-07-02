@@ -1,0 +1,210 @@
+.profile-container {
+    margin: 40px 0 40px 0;
+}
+
+.profile-wrapper {
+    margin: 0 40px 0 30px;
+}
+
+.profile-title {
+    color: #eee;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 2px black;
+}
+
+.profile-title span {
+    color: #88b2b6;
+}
+
+.profile-details {
+    padding: 5px;
+    font-size: 1.2rem;
+    width: fit-content;
+    position: relative;
+    margin: 20px auto;
+}
+
+.profile-details span {
+    color: #eee;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.profile-details label {
+    width: 300px;
+    margin-right: 20px;
+    text-align: right;
+}
+
+.profile-details p {
+    color: #eee;
+    padding: 5px 20px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.227);
+}
+
+
+/* Recent Review*/
+
+.review-container {
+    display: flex;
+    padding: 40px 0 20px 0;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-container h3 {
+    color: #eee;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 2px black;
+}
+
+.review-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review-details {
+    display: flex;
+}
+
+.poster {
+    margin-right: 20px;
+}
+
+.poster img {
+    width: 300px;
+    height: 100%;
+    border-radius: 15px;
+    transition: 0.25s ease;
+}
+
+.poster img:hover {
+    opacity: 70%;
+    box-shadow: 0 0 1px 1px #eee;
+    transition: 0.25s ease;
+}
+
+.details {
+    flex: 1;
+    border-radius: 15px;
+    max-width: 100%;
+}
+
+.details-wrapper {
+    padding: 30px;
+}
+
+.review-movie-title {
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #eee;
+    font-weight: 500;
+    text-shadow: 2px 2px 2px black;
+    transition: 0.25s ease;
+}
+
+.review-movie-title:hover {
+    color: #59878B;
+    transition: 0.25s ease;
+}
+
+.extra-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.review {
+    margin-top: 10px;
+}
+
+.review-box {
+    display: flex;
+    flex-direction: row;
+    color: #eee;
+    text-shadow: 2px 2px 2px black;
+    font-size: 1.0rem;
+    gap: 10px;
+}
+
+.review-date,
+.review-status {
+    color: #eeeeeea1;
+    text-shadow: 2px 2px 2px black;
+    font-size: 0.95rem;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        margin: 40px 0 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile-wrapper {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .profile-title {
+        color: #eee;
+    }
+    .profile-details {
+        padding: 5px;
+        font-size: 1.2rem;
+        width: fit-content;
+        position: relative;
+        margin: 20px auto;
+    }
+    .profile-details span {
+        color: #eee;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .profile-details label {
+        width: 100%;
+        margin: 0 0 5px 40px;
+        text-align: left;
+    }
+    .profile-details p {
+        color: #eeeeeec9;
+        padding: 5px 20px;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.227);
+    }
+    .profile-details input[type="password"] {
+        color: #eeeeeec9;
+        font-size: 1.1rem;
+        padding: 5px 20px;
+        border-radius: 25px;
+        border: none;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.227);
+    }
+    .profile-details .save-btn {
+        color: #eee;
+        font-size: 1.1rem;
+        float: right;
+        padding: 5px 20px;
+        border-radius: 25px;
+        border: none;
+        background-color: #295155;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .poster {
+        display: none;
+    }
+}

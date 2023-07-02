@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Select your Genres</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/browser-logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style/preferences_form.css' %}">
+    <link rel="stylesheet" href="{% static 'style/navbar2.css' %}">
+</head>
+
+<body class="form-bg">
+    <div class="form-container">
+        <div class="">
+            <h2 id="page-name">Please select your favourite genres:</h2>
+            <form action="{% url 'process_genres' %}" method="post">                            
+                {% csrf_token %}
+                <input type="hidden" name="selected_genres" id="selected-genres-input">
+                <div class="genres">
+                    {% for genre in genreList %}
+                    <div class="genre-box" onclick="toggleSelection(this)">
+                        <div class="poster-container">
+                            
+                                {% for movie in genre.movies %} {% if forloop.counter == 4 %}
+                                <img class="movie-poster" src="https://image.tmdb.org/t/p/w780/{{ movie.poster_url }}">
+                                <h3 class="genre-title">{{ genre.name }}</h3>
+                                <p class="genre-id"> ID: {{ genre.id }}</p>
+                                {% endif %} {% endfor %}
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="submit">
+                    <p id="page-name">Note: Maximum of 3 genre types can be selected</p>
+                    <button class="submit-btn" onclick="submitSelection()"> Submit </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var selectedGenres = [];
+
+        function toggleSelection(element) {
+            var genreNameElement = element.querySelector('.genre-title');
+            var genreName = genreNameElement.textContent.trim().split(":")[0].trim();
+
+            if (selectedGenres.includes(genreName)) {
+                // Remove genreId from selectedGenres
+                selectedGenres = selectedGenres.filter(item => item !== genreName);
+                element.classList.remove("selected");
+            } else {
+                if (selectedGenres.length < 3) {
+                    // Add genreId to selectedGenres
+                    selectedGenres.push(genreName);
+                    element.classList.add("selected");
+                    console.log(selectedGenres);
+                } else {
+                    alert("You can only select up to 3 genres.");
+                }
+            }
+        }
+
+        function submitSelection() {
+            if (selectedGenres.length > 0) {
+                if (selectedGenres.length <= 3) {
+                    var selectedGenresParam = selectedGenres.join(',');
+                    document.getElementById('selected-genres-input').value = selectedGenresParam;
+                    // Submit the form
+                    document.forms[0].submit();
+                } else {
+                    alert("You can only select up to 3 genres.");
+                }
+            } else {
+                alert("Please select at least one genre.");
+            }
+        }
+        
+        
+
+        window.addEventListener('resize', function() {
+            var formContainer = document.querySelector('.form-container');
+            var windowWidth = window.innerWidth;
+            var containerWidth = Math.min(1100, windowWidth - 40); /* Adjust the container width as per your requirement */
+            formContainer.style.width = containerWidth + 'px';
+        });
+    </script>
+    <script src="{% static 'script/form_page_theme.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+</html>

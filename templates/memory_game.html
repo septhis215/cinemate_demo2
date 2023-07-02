@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/browser-logo.png' %}">
+    <link rel="stylesheet" href="{% static 'style/memory_game_style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/loading.css' %}">
+    <title>Memory Game</title>
+</head>
+
+<body>
+    <div class="loading-container">
+        <img src="{% static 'img/spining-cat.gif' %}" alt="">
+        <h1><i class="fa-solid fa-spinner"></i></h1>
+    </div>
+    <section class="memory-game">
+        <div class="return-container">
+            <a href="{% url 'index' %}" class="return"><i class="fa-solid fa-circle-arrow-left"></i></a>
+        </div>
+        <p class="intro">Welcome to Movie Flip! Test your memory as you match iconic movie posters in this exciting challenge.</p>
+        {% for movie in movies|slice:12 %}
+        <div class="memory-card" data-member="{{ movie.title }}" data-member-id="{{ movie.id }}">
+            <img class="front-face" src="https://image.tmdb.org/t/p/w1280/{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <img class="back-face" src="{% static 'img/default-memory-game.png' %}">
+        </div>
+        {% endfor %}
+        <div class="modal-overlay">
+            <div class="modal-container">
+                <button class="reload">Play Again!</button>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{% static 'script/memory_game_script.js' %}"></script>
+    <script src="{% static 'script/pop_alert.js'%}"></script>
+    <script>
+        function loading() {
+            return new Promise((resolve) => {
+                const loadingIcon = document.createElement("img");
+                loadingIcon.src = "{% static 'img/loading.gif' %}";
+                loadingIcon.style.width = "100px";
+                loadingIcon.style.height = "100px";
+
+                swal({
+                    title: "Loading...",
+                    content: {
+                        element: loadingIcon,
+                    },
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    buttons: false,
+                });
+
+                setTimeout(() => {
+                    resolve();
+                }, 200);
+            });
+        }
+    </script>
+</body>
+
+</html>

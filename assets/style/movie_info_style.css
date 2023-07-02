@@ -1,0 +1,518 @@
+/* Movie */
+
+.individual-movie-container {
+    display: grid;
+    padding: 20px 80px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.movie-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    border-radius: 5px;
+}
+
+.movie-trailer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 56.25%;
+}
+
+.movie-trailer iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+.about-movie {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-details {
+    display: flex;
+}
+
+.poster {
+    margin-right: 20px;
+}
+
+.poster img {
+    width: 300px;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.details {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+
+.details-wrapper {
+    padding: 30px;
+}
+
+.info {
+    color: #eee;
+    display: flex;
+}
+
+.title {
+    font-size: 2.3rem;
+    color: #eee;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.release-date,
+.genres,
+.runtime,
+.rating {
+    padding: 0 20px 0 0;
+    font-weight: 300;
+}
+
+.star-rate {
+    color: yellow;
+}
+
+.studios {
+    padding: 15px 0;
+}
+
+.staff,
+.production {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+}
+
+.staff h4,
+.production h4 {
+    color: #eee;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.staff p,
+.production p {
+    padding-left: 10px;
+    color: #eee;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.overview {
+    padding-top: 10px;
+}
+
+.overview-container h3 {
+    display: inline-block;
+    color: #eee;
+    border-bottom: 3px solid white;
+    padding-bottom: 2px;
+}
+
+.overview-container p {
+    color: #eee;
+    font-size: 1.0rem;
+    font-style: italic;
+}
+
+.individual-add-watchlist-btn,
+.individual-remove-watchlist-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 20px 0 0 auto;
+    background-color: transparent;
+    border: 3px solid #eee;
+    color: #eee;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    transition: 0.25s ease;
+}
+
+.individual-add-watchlist-btn:hover,
+.individual-remove-watchlist-btn:hover {
+    opacity: 70%;
+    transition: 0.25s ease;
+}
+
+
+/* Casts*/
+
+.casts {
+    padding: 20px 0;
+    margin: 0 80px;
+}
+
+.casts-row {
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding-bottom: 20px;
+}
+
+.casts-null {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(168, 168, 168);
+    font-size: 1.8rem;
+    padding: 50px 0;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.cast-slider {
+    display: flex;
+}
+
+.cast-container {
+    flex: 0 0 auto;
+    width: 180px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.cast-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.cast-image {
+    width: 150px;
+    height: 230px;
+    border-radius: 15px;
+}
+
+.cast-details-container {
+    width: 100%;
+    height: auto;
+}
+
+.cast-details {
+    flex-grow: 1;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cast-details h5 {
+    font-size: 0.9rem;
+    font-weight: 550;
+    color: #eee;
+}
+
+.cast-details p {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(165, 165, 165);
+    margin: 0;
+    max-height: 3.6rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.cast-details h5,
+.cast-details p {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+
+/* Reviews */
+
+.reviews {
+    padding: 20px 80px;
+}
+
+.review-form {
+    margin-bottom: 20px;
+}
+
+.review-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-review {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.form-group {
+    flex-grow: 1;
+}
+
+.review-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 15px;
+    height: auto;
+    min-height: 110px;
+    resize: none;
+}
+
+.review-form button {
+    align-self: flex-end;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #2c555a;
+    color: #eee;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.review-form button:hover {
+    background-color: #407b83;
+    transition: 0.25s ease;
+}
+
+.casts h3,
+.reviews h3 {
+    color: #eee;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 2px black;
+    padding-bottom: 20px;
+}
+
+.reviews-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-reviews {
+    text-decoration: none;
+    font-size: 1.0rem;
+    color: #eee;
+    text-shadow: 2px 2px 2px black;
+}
+
+.review-container {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.review-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.null-reviews {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(168, 168, 168);
+    font-size: 1.8rem;
+    padding: 30px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.review-profile {
+    position: relative;
+    margin-right: 20px;
+}
+
+.review-profile-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    color: #eee;
+    background-color: #2c555a;
+}
+
+.review-profile-box h2 {
+    font-size: 1.4rem;
+}
+
+.thumbs {
+    position: absolute;
+    color: white;
+    font-size: 1.5rem;
+    top: -15px;
+    right: -10px;
+}
+
+.thumbs-status {
+    text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white;
+}
+
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: #eee;
+}
+
+.author {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin: 10px 0 0 0;
+}
+
+.author .delete-btn {
+    cursor: pointer;
+    background: transparent;
+    color: #eee;
+    border: none;
+    margin-right: 15px;
+    font-size: 1.3rem;
+    transition: 0.15s ease;
+}
+
+.author .delete-btn:hover {
+    opacity: 70%;
+    transition: 0.15s ease;
+}
+
+.content {
+    font-size: 1.0rem;
+    font-weight: 300;
+    padding-top: 10px;
+}
+
+.review-details {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.review-details p {
+    padding-right: 20px;
+    opacity: 80%;
+}
+
+@media screen and (max-width: 531px) {
+    .info {
+        display: none;
+    }
+    .studios {
+        display: none;
+    }
+    .title {
+        display: none;
+    }
+    .poster {
+        display: none;
+    }
+    .overview-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 531px) and (max-width: 663px) {
+    .info {
+        display: none;
+    }
+    .studios {
+        display: none;
+    }
+    .title {
+        display: none;
+    }
+    .poster {
+        display: none;
+    }
+    .overview-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 663px) and (max-width: 768px) {
+    .info {
+        display: none;
+    }
+    .studios {
+        display: none;
+    }
+    .title {
+        display: none;
+    }
+    .poster {
+        display: none;
+    }
+    .overview-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 886px) {
+    .info {
+        display: none;
+    }
+    .studios {
+        display: none;
+    }
+    .title {
+        display: none;
+    }
+    .overview-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 886px) and (max-width: 1014px) {
+    .info {
+        display: none;
+    }
+    .studios {
+        display: none;
+    }
+    .overview-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 1014px) and (max-width: 1213px) {
+    .info {
+        display: none;
+    }
+    .overview-container p {
+        font-size: 1.1rem;
+    }
+}

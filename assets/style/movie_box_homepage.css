@@ -1,0 +1,340 @@
+/* For all category naming */
+
+.category-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.movie-categories {
+    font-size: 1.8rem;
+    display: inline-block;
+    width: auto;
+    margin: 40px 0 20px 0;
+    color: #eee;
+    text-shadow: 2px 2px 2px black;
+}
+
+.movie-categories .bar {
+    color: #8acbd0;
+    margin-right: 10px;
+}
+
+.movie-link {
+    margin: 40px 0 20px 0;
+    text-decoration: none;
+}
+
+.movie-link p {
+    color: #eee;
+}
+
+
+/* Related Movies/Other Movies*/
+
+.related-movies,
+.other-movies {
+    padding-top: 20px;
+}
+
+.related-movie-container,
+.other-movie-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 20px 80px;
+}
+
+.movies-area {
+    padding: 0 80px;
+    font-size: 1.8rem;
+    display: inline-block;
+    width: auto;
+    color: #eee;
+    text-shadow: 2px 2px 2px black;
+}
+
+
+/* Layout only */
+
+.options {
+    padding: 0 30px 0 30px;
+}
+
+.movie-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.movies {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.movie-box {
+    flex: 0 0 200px;
+    margin: 2px 20px 20px 2px;
+    background-color: rgb(0, 0, 0, 0.6);
+    height: 100%;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.movie-box:hover {
+    box-shadow: 0 0 1px 1px #eee;
+}
+
+.movie-box img {
+    width: 100%;
+    height: 300px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    transition: 0.25s ease-in-out;
+}
+
+.movie-box img:hover {
+    cursor: pointer;
+    opacity: 60%;
+    transition: 0.2s ease-in-out;
+}
+
+.movie-box h3 {
+    color: #eee;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px 5px 0 8px;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-detail {
+    display: flex;
+    align-items: center;
+    margin-top: 5px 0 0 8px;
+    justify-content: space-between;
+}
+
+.movie-detail .fa-star {
+    color: yellow;
+    font-size: 1.1rem;
+}
+
+.rating-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.movie-rating {
+    color: #eee;
+    margin: 0 20px 0 5px;
+}
+
+.review-btn {
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+    color: #eee;
+}
+
+.review-btn:hover {
+    cursor: pointer;
+    opacity: 70%;
+}
+
+.release-year {
+    color: #eee;
+    opacity: 70%;
+    justify-self: flex-end;
+    padding-right: 10px;
+}
+
+.trailer-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #eee;
+    color: #eee;
+    border-radius: 20px;
+    padding: 10px 0 10px 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.25s ease;
+}
+
+
+/* User signed in*/
+
+.add-watchlist-btn,
+.remove-watchlist-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #eee;
+    color: #eee;
+    padding: 10px 0 10px 0;
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    margin: 0 auto 20px auto;
+    transition: 0.25s ease;
+}
+
+.trailer-btn:hover,
+.add-watchlist-btn:hover,
+.remove-watchlist-btn:hover {
+    opacity: 70%;
+    transition: 0.25s ease;
+}
+
+
+/* User not signed in */
+
+.no-watchlist,
+.empty-watchlist {
+    color: #eee;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.no-watchlist h1,
+.empty-watchlist h1 {
+    font-size: 6.0rem;
+    color: #59878B;
+}
+
+.no-watchlist h3,
+.empty-watchlist h3 {
+    border-bottom: 3px solid #59878B;
+}
+
+.no-watchlist p,
+.empty-watchlist p {
+    margin-top: 10px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.signin-link {
+    color: #eee;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 20px;
+    background-color: #59878B;
+    border-radius: 35px;
+    margin-top: 20px;
+    transition: 0.25s ease;
+}
+
+.signin-link:hover {
+    opacity: 70%;
+    transition: 0.25s ease;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.btn-wrapper {
+    padding: 0 20px 0 20px;
+}
+
+
+/* scroll bar styling */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #eeeeee8e;
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1400px) {
+    .movie-box h3 {
+        font-size: 1.0rem;
+        width: 215px;
+    }
+    .movie-detail .fa-star {
+        font-size: 1.0rem;
+    }
+    .review-btn {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1480px) {
+    .movie-box h3 {
+        font-size: 1.1rem;
+        width: 215px;
+    }
+    .movie-detail .fa-star {
+        font-size: 1.0rem;
+    }
+    .review-btn {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1640px) {
+    .movie-box h3 {
+        font-size: 1.0rem;
+        width: 215px;
+    }
+    .movie-detail .fa-star {
+        font-size: 1.0rem;
+    }
+    .review-btn {
+        font-size: 1.1rem;
+    }
+    .movie-categories {
+        font-size: 1.9rem;
+    }
+}
+
+@media screen and (min-width: 1920px) and (max-width: 1960px) {
+    .movie-box h3 {
+        font-size: 1.1rem;
+        width: 215px;
+    }
+    .movie-detail .fa-star {
+        font-size: 1.1rem;
+    }
+    .review-btn {
+        font-size: 1.2rem;
+    }
+    .movie-categories {
+        font-size: 2.1rem;
+    }
+}

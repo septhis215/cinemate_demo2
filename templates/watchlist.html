@@ -1,0 +1,389 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/browser-logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style/navbar2.css' %}">
+    <link rel="stylesheet" href="{% static 'style/movie_page_style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/credits.css' %}">
+    <title>My Watchlist</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <ul>
+            <li>
+                <a class="active" href="/" id="web-logo"><img src="{% static 'img/web-logo.png' %}" alt="web-logo"></a>
+            </li>
+            <li class="menu-dropdown">
+                <a href="#" class="dropbutton"><i class="fa-solid fa-bars"></i>&nbsp;&nbsp;Menu</a>
+                <div class="dropdown-content">
+                    <div class="dropdown-inner">
+                        <div class="d1">
+                            <h3>| Movies</h3>
+                            <a href="{% url 'recent_movie' %}" action='recent_movie' method="get">Recent Movies</a>
+                            <a href="{% url 'top_movie' %}" action='top_movie' method="get">Top Movies By Genre</a>
+                            <a href="{% url 'popular_movie' %}" action='popular_movie' method="get">Most Popular Movies</a>
+                            <a href="{% url 'fan_fav' %}" action='fan_fav' method="get">Fan Favorites</a>
+                            <a href="{% url 'upcoming_movie' %}" action='upcoming_movie' method="get">Upcoming Movies</a>
+                        </div>
+                        <div class="d1">
+                            <h3>| More</h3>
+                            <a href="{% url 'memory_game' %}">Movie Flip</a>
+                            <a href="{% url 'top_box_office' %}">Top Box Office </a>
+                        </div>
+                        <div class="d1">
+                            <h3>| Account</h3>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'profile' %}">Profile</a>
+                            <a href="{% url 'watchlist' %}">My Watchlist</a>
+                            <a href="{% url 'logout' %}">Sign Out</a> {% else %}
+                            <a href="{% url 'register_page' %}">Sign Up</a>
+                            <a href="{% url 'login_page' %}">Sign In</a> {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="{% url 'watchlist' %}" class="nav-watchlist"><i class="fa-solid fa-bookmark"></i>&nbsp;&nbsp;Watchlist</a>
+            </li>
+            <li>
+                {% csrf_token %}
+                <form id="search-form" action="{% url 'search_movies' %}" method="get">
+                    <div class="search-wrapper">
+                        <input type="text" id="search-input" name="q" placeholder="Search Movies...">
+                        <button type="submit" id="search-btn"><i class="fa-solid fa-magnifying-glass" style="color: #122527;"></i></button>
+                    </div>
+                </form>
+            </li>
+        </ul>
+        <div class="user-side">
+            <div class="theme-wrapper">
+                <div class="theme">
+                    <button id="color-theme" onclick="switchTheme()"><i class="fa-solid fa-moon" style="color: #f0e894;"></i></button>
+
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="user-dropdown">
+                <a href="#" class="dropdown-toggle">{{ user.username }}</a>
+                <div class="user-dropdown-content">
+                    <a href="{% url 'profile' %}">Profile</a>
+                    <a href="{% url 'watchlist' %}">Watchlist</a>
+                    <a href="{% url 'logout' %}">Sign Out</a>
+                </div>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    var toggleDropdown = document.querySelector(".dropdown-toggle");
+                    var content = document.querySelector(".user-dropdown-content");
+
+                    toggleDropdown.addEventListener("click", function(e) {
+                        e.preventDefault();
+                        if (content.style.display === "block") {
+                            content.style.display = "none";
+                        } else {
+                            content.style.display = "block";
+                        }
+                    });
+
+                    document.addEventListener("click", function(e) {
+                        if (!toggleDropdown.contains(e.target) && !content.contains(e.target)) {
+                            content.style.display = "none";
+                        }
+                    });
+                });
+            </script>
+            {% else %}
+            <div class="login-register">
+                <a href="{% url 'login_page' %}" class="form-btn" id="user-form"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Login/Register</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="user_watchlist" style="display: block;">
+        <div class="watch_list">
+            <h3 class="movie-categories"><span class="bar">|</span>Your Watchlist</h3>
+        </div>
+        <div class="page-container">
+            {% if user.is_authenticated %}
+            <div class="movies-container">
+                {% for movie in watchlist_movies %}
+                <div class="movie-box">
+                    <div class="poster-container">
+                        {% if movie.poster_path %}
+                        <a href="{% url 'movie_info' movie_id=movie.id %}">
+                            <img class="movie-poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
+                        </a>
+                        {% else %}
+                        <img class="movie-poster" src="{% static 'img/null-poster.png' %}" alt=""> {% endif %}
+                    </div>
+                    <h3 class="movie-title">{{ movie.title }}</h3>
+                    <p class="release-year">{{ movie.release_date }}</p>
+                    <div class="movie-detail">
+                        <div class="rating-box">
+                            <p><i class="fa-solid fa-star"></i></p>
+                            <p class="movie-rating">{{ movie.vote_average }}</p>
+                        </div>
+                        <a href="{% url 'movie_info' movie_id=movie.id %}" class="trailer-button"><i class="fa-regular fa-circle-play"></i></a>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="movie_id" value="{{ movie.id }}"> {% if user.is_authenticated %}
+                            <button class="watchlist-btn {% if movie.is_added %}remove-watchlist-btn{% else %}add-watchlist-btn{% endif %}" data-movie-id="{{ movie.id }}"></button>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    var btn = $('.watchlist-btn[data-movie-id="{{ movie.id }}"]');
+
+                                    $.ajax({
+                                        url: '{% url "checkWatchlist" %}',
+                                        method: 'POST',
+                                        data: {
+                                            'movie_id': '{{ movie.id }}',
+                                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                        },
+                                        success: function(data) {
+                                            if (data.is_added) {
+                                                btn.removeClass('add-watchlist-btn').addClass('remove-watchlist-btn');
+                                                btn.html('<i class="fa-solid fa-bookmark"></i>');
+                                            } else {
+                                                btn.removeClass('remove-watchlist-btn').addClass('add-watchlist-btn');
+                                                btn.html('<i class="fa-regular fa-bookmark"></i>');
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if watchlist_movies|length == 0 %}
+            <div class="empty-watchlist">
+                <div class="empty-watchlist-info">
+                    <h1><i class="fa-solid fa-circle-xmark"></i></h1>
+                    <h3>Your watchlist is currently empty!</h3>
+                </div>
+                <div class="recommend-container">
+                    <h3 class="recommend-info">Your watchlist looks empty, we recommend some popular movies for you!</h3>
+                    <div class="movies-container">
+                        {% for movie in popular_movies %}
+                        <div class="movie-box">
+                            <div class="poster-container">
+                                {% if movie.poster_path %}
+                                <a href="{% url 'movie_info' movie_id=movie.id %}">
+                                    <img class="movie-poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
+                                </a>
+                                {% else %}
+                                <img class="movie-poster" src="{% static 'img/null-poster.png' %}" alt=""> {% endif %}
+                            </div>
+
+                            <h3 class="movie-title">{{ movie.title }}</h3>
+                            <p class="release-year">{{ movie.release_date }}</p>
+                            <div class="movie-detail">
+                                <div class="rating-box">
+                                    <p><i class="fa-solid fa-star"></i></p>
+                                    <p class="movie-rating">{{ movie.vote_average }}</p>
+                                </div>
+                                <a href="{% url 'movie_info' movie_id=movie.id %}" class="trailer-button"><i class="fa-regular fa-circle-play"></i></a>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="movie_id" value="{{ movie.id }}"> {% if user.is_authenticated %}
+                                    <button class="watchlist-btn {% if movie.is_added %}remove-watchlist-btn{% else %}add-watchlist-btn{% endif %}" data-movie-id="{{ movie.id }}"></button>
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script>
+                                        $(document).ready(function() {
+                                            var btn = $('.watchlist-btn[data-movie-id="{{ movie.id }}"]');
+
+                                            $.ajax({
+                                                url: '{% url "checkWatchlist" %}',
+                                                method: 'POST',
+                                                data: {
+                                                    'movie_id': '{{ movie.id }}',
+                                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                                },
+                                                success: function(data) {
+                                                    if (data.is_added) {
+                                                        btn.removeClass('add-watchlist-btn').addClass('remove-watchlist-btn');
+                                                        btn.html('<i class="fa-solid fa-bookmark"></i>');
+                                                    } else {
+                                                        btn.removeClass('remove-watchlist-btn').addClass('add-watchlist-btn');
+                                                        btn.html('<i class="fa-regular fa-bookmark"></i>');
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'popular_movie' %}" class="signin-link" id="user-form">View More!</a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if watchlist_movies|length > 0 and watchlist_movies|length < 7 %} 
+            <div class="watch_list">
+                <h3 class="movie-categories"><span class="bar">|</span>More Popular Movies</h3>
+            </div>
+            <div class="limited-watchlist">
+                <div class="recommend-container">
+                    <div class="movies-container">
+                        {% for movie in popular_movies %}
+                        <div class="movie-box">
+                            <div class="poster-container">
+                                {% if movie.poster_path %}
+                                <a href="{% url 'movie_info' movie_id=movie.id %}">
+                                    <img class="movie-poster" src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
+                                </a>
+                                {% else %}
+                                <img class="movie-poster" src="{% static 'img/null-poster.png' %}" alt=""> {% endif %}
+                            </div>
+
+                            <h3 class="movie-title">{{ movie.title }}</h3>
+                            <p class="release-year">{{ movie.release_date }}</p>
+                            <div class="movie-detail">
+                                <div class="rating-box">
+                                    <p><i class="fa-solid fa-star"></i></p>
+                                    <p class="movie-rating">{{ movie.vote_average }}</p>
+                                </div>
+                                <a href="{% url 'movie_info' movie_id=movie.id %}" class="trailer-button"><i class="fa-regular fa-circle-play"></i></a>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="movie_id" value="{{ movie.id }}"> {% if user.is_authenticated %}
+                                    <button class="watchlist-btn {% if movie.is_added %}remove-watchlist-btn{% else %}add-watchlist-btn{% endif %}" data-movie-id="{{ movie.id }}"></button>
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script>
+                                        $(document).ready(function() {
+                                            var btn = $('.watchlist-btn[data-movie-id="{{ movie.id }}"]');
+
+                                            $.ajax({
+                                                url: '{% url "checkWatchlist" %}',
+                                                method: 'POST',
+                                                data: {
+                                                    'movie_id': '{{ movie.id }}',
+                                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                                },
+                                                success: function(data) {
+                                                    if (data.is_added) {
+                                                        btn.removeClass('add-watchlist-btn').addClass('remove-watchlist-btn');
+                                                        btn.html('<i class="fa-solid fa-bookmark"></i>');
+                                                    } else {
+                                                        btn.removeClass('remove-watchlist-btn').addClass('add-watchlist-btn');
+                                                        btn.html('<i class="fa-regular fa-bookmark"></i>');
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'popular_movie' %}" class="signin-link" id="user-form">View More!</a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if watchlist_movies|length %}
+            <div class="pagination-container">
+                {% if previous_page %}
+                <a href="{% url 'watchlist' %}?page={{ previous_page }}" class="action-btn">
+                    <<</a>
+                        {% endif %}
+                        <div class="page-num">Page {{ current_page }}</div>
+                        {% if next_page %}
+                        <a href="{% url 'watchlist' %}?page={{ next_page }}" class="action-btn">>></a> {% endif %}
+            </div>
+            {% endif %} {% endif %}
+        </div>
+    </div>
+
+    <footer class="credits-container">
+        <div class="credits-bg"></div>
+        <div class="color-overlay"></div>
+        <div class="credits-wrapper">
+            <div class="additional-links">
+                <p>Links: </p>
+                <a href="{% url 'recent_movie' %}" action='recent_movie' method="get">Recent Movies<i class="fa-solid fa-circle-right direct"></i></a>
+                <a href="{% url 'top_movie' %}" action='top_movie' method="get">Top Movies By Genre<i class="fa-solid fa-circle-right direct"></i></a>
+                <a href="{% url 'popular_movie' %}" action='popular_movie' method="get">Most Popular Movies<i class="fa-solid fa-circle-right direct"></i></a>
+                <a href="{% url 'fan_fav' %}" action='fan_fav' method="get">Fan Favorites<i class="fa-solid fa-circle-right direct"></i></a>
+                <a href="{% url 'upcoming_movie' %}" action='upcoming_movie' method="get">Upcoming Movies<i class="fa-solid fa-circle-right direct"></i></a>
+            </div>
+            <span class="line"></span>
+            <div class="credits">
+                <p>Cinemate is a user-friendly movie recommendation system that lets you watch movie trailers, write reviews, and receive auto-generated ratings based on your feedback. It's a must-have platform for movie enthusiasts, ensuring you discover
+                    and enjoy the best films effortlessly.</p>
+                <p class="copyright">&copy; 2023 Cinemate. All rights reserved.<span class="devs">TYY • NYL • LCF</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{% static 'script/pop_alert.js' %}"></script>
+    <script src="{% static 'script/change_theme.js' %}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            // Function to update the watchlist button in each movie box container
+            $('.watchlist-btn').click(function(e) {
+                e.preventDefault();
+                var movieId = $(this).data('movie-id');
+                var btn = $(this);
+                $.ajax({
+                    url: '{% url "toggleWatchlist" %}',
+                    method: 'POST',
+                    data: {
+                        'movie_id': movieId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.is_added) {
+                            btn.removeClass('add-watchlist-btn').addClass('remove-watchlist-btn');
+                            btn.html('<i class="fa-solid fa-bookmark"></i>');
+                        } else {
+                            btn.removeClass('remove-watchlist-btn').addClass('add-watchlist-btn');
+                            btn.html('<i class="fa-regular fa-bookmark"></i>');
+                        }
+                        window.location.reload();
+                    }
+                });
+            });
+        });
+        // rating elements
+        const rating = document.querySelectorAll(".movie-rating");
+
+        // set tmdb rating to 1 decimal
+        rating.forEach((e) => {
+            const rate = parseFloat(e.textContent);
+            e.textContent = rate.toFixed(1);
+        });
+
+        // movie year elements
+        const movieYear = document.querySelectorAll(".release-year");
+
+        // set movie release year 
+        movieYear.forEach((e) => {
+            const movieDate = e.textContent;
+            const year = new Date(movieDate).getFullYear(); // Extract the year from the release date string
+            e.textContent = year;
+        });
+    </script>
+</body>
+
+</html>

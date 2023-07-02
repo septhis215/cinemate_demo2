@@ -18,6 +18,10 @@
 </head>
 
 <body>
+    <div class="loading-container">
+        <img src="{% static 'img/spining-pug.gif' %}" alt="">
+        <h1><i class="fa-solid fa-spinner"></i></h1>
+    </div>
     <div class="navbar">
         <ul>
             <li>
@@ -570,25 +574,7 @@
     <script src="{% static 'script/pop_alert.js' %}"></script>
 
     <script>
-        // rating elements
-        const rating = document.querySelectorAll(".movie-rating");
 
-        // set tmdb rating to 1 decimal
-        rating.forEach((e) => {
-            const rate = parseFloat(e.textContent);
-            e.textContent = rate.toFixed(1);
-        });
-        
-        // movie year elements
-        const movieYear = document.querySelectorAll(".release-year");
-
-        // set movie release year 
-        movieYear.forEach((e) => {
-            const movieDate = e.textContent;
-            const year = new Date(movieDate).getFullYear(); // Extract the year from the release date string
-            e.textContent = year;
-        });
-        
         function statusColor() {
             const reviewStatus = document.querySelectorAll('.review-status');
 
@@ -603,6 +589,16 @@
         }
 
         statusColor();
+
+        // movie year elements
+        const movieYear = document.querySelectorAll(".release-year");
+
+        // set movie release year 
+        movieYear.forEach((e) => {
+            const movieDate = e.textContent;
+            const year = new Date(movieDate).getFullYear(); // Extract the year from the release date string
+            e.textContent = year;
+        });
 
         var textarea = document.querySelector('textarea');
 
